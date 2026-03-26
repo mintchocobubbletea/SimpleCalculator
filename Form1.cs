@@ -11,7 +11,7 @@ namespace SimpleCalculator
         string currentOperator = ""; //연산자 변수
         bool isNewInput = true; //새로운 입력인지 여부를 나타내는 변수
 
-        private void txt_Input_TextChanged(object sender, EventArgs e)
+        private void txt_Input_TextChanged(object sender, EventArgs e) //입력창 텍스트 변경 이벤트 메소드
         {
 
         }
