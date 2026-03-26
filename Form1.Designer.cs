@@ -31,8 +31,8 @@
             label1 = new Label();
             txt_Input = new TextBox();
             txt_Result = new TextBox();
-            button2 = new Button();
-            button3 = new Button();
+            btn_CE = new Button();
+            btn_C = new Button();
             btn_Delete = new Button();
             btn_divide = new Button();
             btn_mul = new Button();
@@ -80,25 +80,27 @@
             txt_Result.Size = new Size(325, 34);
             txt_Result.TabIndex = 1;
             // 
-            // button2
+            // btn_CE
             // 
-            button2.Font = new Font("맑은 고딕", 15F);
-            button2.Location = new Point(46, 216);
-            button2.Name = "button2";
-            button2.Size = new Size(76, 54);
-            button2.TabIndex = 3;
-            button2.Text = "CE";
-            button2.UseVisualStyleBackColor = true;
+            btn_CE.Font = new Font("맑은 고딕", 15F);
+            btn_CE.Location = new Point(46, 216);
+            btn_CE.Name = "btn_CE";
+            btn_CE.Size = new Size(76, 54);
+            btn_CE.TabIndex = 3;
+            btn_CE.Text = "CE";
+            btn_CE.UseVisualStyleBackColor = true;
+            btn_CE.Click += btn_CE_Click;
             // 
-            // button3
+            // btn_C
             // 
-            button3.Font = new Font("맑은 고딕", 15F);
-            button3.Location = new Point(128, 216);
-            button3.Name = "button3";
-            button3.Size = new Size(76, 54);
-            button3.TabIndex = 3;
-            button3.Text = "C";
-            button3.UseVisualStyleBackColor = true;
+            btn_C.Font = new Font("맑은 고딕", 15F);
+            btn_C.Location = new Point(128, 216);
+            btn_C.Name = "btn_C";
+            btn_C.Size = new Size(76, 54);
+            btn_C.TabIndex = 3;
+            btn_C.Text = "C";
+            btn_C.UseVisualStyleBackColor = true;
+            btn_C.Click += btn_C_Click;
             // 
             // btn_Delete
             // 
@@ -107,8 +109,9 @@
             btn_Delete.Name = "btn_Delete";
             btn_Delete.Size = new Size(76, 54);
             btn_Delete.TabIndex = 3;
-            btn_Delete.Text = "del";
+            btn_Delete.Text = "Del";
             btn_Delete.UseVisualStyleBackColor = true;
+            btn_Delete.Click += btn_Delete_Click;
             // 
             // btn_divide
             // 
@@ -332,8 +335,8 @@
             Controls.Add(btn_7);
             Controls.Add(btn_divide);
             Controls.Add(btn_Delete);
-            Controls.Add(button3);
-            Controls.Add(button2);
+            Controls.Add(btn_C);
+            Controls.Add(btn_CE);
             Controls.Add(txt_Result);
             Controls.Add(txt_Input);
             Controls.Add(label1);
@@ -348,8 +351,8 @@
         private Label label1;
         private TextBox txt_Input;
         private TextBox txt_Result;
-        private Button button2;
-        private Button button3;
+        private Button btn_CE;
+        private Button btn_C;
         private Button btn_Delete;
         private Button btn_divide;
         private Button btn_mul;

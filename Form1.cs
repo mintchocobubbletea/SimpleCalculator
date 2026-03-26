@@ -19,7 +19,7 @@ namespace SimpleCalculator
         {
             Button btn = sender as Button;
 
-            if (isNewInput)
+            if (isNewInput || txt_Input.Text == "0")
             {
                 txt_Input.Text = btn.Text;
                 isNewInput = false;
@@ -35,7 +35,7 @@ namespace SimpleCalculator
         {
             Button btn = sender as Button;
             double currentValue = double.Parse(txt_Input.Text);
-           
+
             if (!string.IsNullOrEmpty(currentOperator))
             {
                 switch (currentOperator)
@@ -94,6 +94,65 @@ namespace SimpleCalculator
             isNewInput = true;
             // 다음 계산을 위해 초기화
             expression = "";
+        }
+
+        private void btn_C_Click(object sender, EventArgs e)
+        {
+            txt_Input.Text = "0";
+            txt_Result.Text = "";
+
+            previousValue = 0;
+            currentOperator = "";
+            expression = "";
+
+            isNewInput = true;
+        }
+
+        private void btn_CE_Click(object sender, EventArgs e)
+        {
+            // 현재 입력값 길이만큼 expression에서 제거
+            int len = txt_Input.Text.Length;
+            if (expression.Length >= len)
+            {
+                expression = expression.Substring(0, expression.Length - len);
+            }
+            txt_Input.Text = "0";
+            isNewInput = true;
+            txt_Result.Text = expression;
+        }
+
+        private void btn_Delete_Click(object sender, EventArgs e) //De;버튼 기능
+        {
+            if (!isNewInput && txt_Input.Text.Length > 1)
+            {
+                // 현재 입력값 줄이기
+                txt_Input.Text = txt_Input.Text.Substring(0, txt_Input.Text.Length - 1);
+            }
+            else
+            {
+                txt_Input.Text = "0";
+                isNewInput = true;
+            }
+
+            // expression 재구성
+            string[] parts = expression.Split(' ');
+
+            if (parts.Length >= 3)
+            {
+                // 앞부분 (예: "53 -")
+                string front = parts[0] + " " + parts[1];
+
+                // 새 expression 만들기
+                expression = front + " " + txt_Input.Text;
+            }
+            else
+            {
+                // 숫자만 있는 경우
+                expression = txt_Input.Text;
+            }
+
+            txt_Result.Text = expression.TrimEnd();
+
         }
     }
 }
