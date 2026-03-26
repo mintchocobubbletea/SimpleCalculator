@@ -34,11 +34,34 @@ namespace SimpleCalculator
         private void Operator_Click(object sender, EventArgs e) //연산자 메소드
         {
             Button btn = sender as Button;
-
-            previousValue = double.Parse(txt_Input.Text);
+            double currentValue = double.Parse(txt_Input.Text);
+           
+            if (!string.IsNullOrEmpty(currentOperator))
+            {
+                switch (currentOperator)
+                {
+                    case "+":
+                        previousValue += currentValue;
+                        break;
+                    case "-":
+                        previousValue -= currentValue;
+                        break;
+                    case "X":
+                    case "*":
+                        previousValue *= currentValue;
+                        break;
+                    case "%":
+                        previousValue /= currentValue;
+                        break;
+                }
+            }
+            else
+            {
+                previousValue = currentValue;
+            }
             currentOperator = btn.Text;
             isNewInput = true;
-
+            //식 표시
             expression += " " + btn.Text + " ";
             txt_Result.Text = expression;
         }
@@ -52,11 +75,20 @@ namespace SimpleCalculator
                 case "+":
                     result = previousValue + currentValue;
                     break;
+                case "-":
+                    result = previousValue - currentValue;
+                    break;
 
-                
+                case "X":
+                case "*":
+                    result = previousValue * currentValue;
+                    break;
+                case "%":
+                    result = previousValue / currentValue;
+                    break;
+
             }
-
-            txt_Result.Text = result.ToString();
+            txt_Input.Text = result.ToString();
             txt_Result.Text = expression + " = " + result.ToString();
 
             isNewInput = true;
